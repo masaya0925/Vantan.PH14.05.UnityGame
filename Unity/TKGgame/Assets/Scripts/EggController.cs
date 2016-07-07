@@ -22,6 +22,11 @@ public class EggController : MonoBehaviour {
 
 			Destroy(this.gameObject);
 			col.gameObject.GetComponent<Renderer> ().material = _tkg;
-	}
+	    }
+		if(col.gameObject.tag == "Floar"){
+			mng.TkgFailed ();
+
+			Destroy(this.gameObject);
+		}
   }
 }

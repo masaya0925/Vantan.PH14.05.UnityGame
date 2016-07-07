@@ -34,5 +34,11 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+	public void TkgFailed() {
+		_text.text = "Failed";
+
+
+	}
+
 		
 }

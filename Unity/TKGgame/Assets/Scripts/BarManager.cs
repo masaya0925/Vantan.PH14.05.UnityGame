@@ -6,6 +6,7 @@ public class BarManager : MonoBehaviour {
 	[SerializeField]
 	private float delay;
 
+	private float timer;
 	private Animator animator;
 	private IEnumerator anime() {
 		yield return new WaitForSeconds(delay);
@@ -21,6 +22,13 @@ public class BarManager : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-	
+//		timer += Time.deltaTime;
+//		if(timer > delay) {
+//			if(animator.enabled != true){
+//			Debug.Log(Time.time);
+//			Debug.Log(delay);
+//			}
+//			animator.enabled = true;
+//		}
 	}
 }

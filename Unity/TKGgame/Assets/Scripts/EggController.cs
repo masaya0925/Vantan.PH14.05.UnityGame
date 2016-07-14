@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 public class EggController : MonoBehaviour {
 	public GameManager mng;
 	public Material _tkg;
+	private bool _1stbar;
 	void Awake () {
+		_1stbar = false;
 		gameObject.GetComponent<Rigidbody>().useGravity = false;
 	}
 	public void SetPosition(Vector3 newPosition) {
@@ -19,14 +21,17 @@ public class EggController : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 		if(col.gameObject.tag == "Dish"){
 			mng.TkgSuccess();
-
 			Destroy(this.gameObject);
 			col.gameObject.GetComponent<Renderer> ().material = _tkg;
 	    }
 		if(col.gameObject.tag == "Floar"){
 			mng.TkgFailed ();
-
 			Destroy(this.gameObject);
+		}
+		if(col.gameObject.tag == "Table") {
+			mng.TkgFailed();
+			Destroy(this.gameObject);
+
 		}
   }
 }

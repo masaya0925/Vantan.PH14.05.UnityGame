@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 public class EggController : MonoBehaviour {
 	public GameManager mng;
 	public Material _tkg;
-	private bool _1stbar;
 	void Awake () {
-		_1stbar = false;
 		gameObject.GetComponent<Rigidbody>().useGravity = false;
 	}
 	public void SetPosition(Vector3 newPosition) {

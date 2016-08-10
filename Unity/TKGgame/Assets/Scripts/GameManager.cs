@@ -4,9 +4,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 	public Text _text;
-	public bool _onetouch = false;
-	public bool _clear = false;
+	private bool _onetouch = false;
+	private bool _failed = false;
+	private bool _clear = false;
+	public AudioClip _clearSound;
+	public static int SceneNum;
 	public EggController egg;
+	public GameObject button;
 
 	void Update () {
 		if (!_onetouch) {
@@ -22,21 +26,47 @@ public class GameManager : MonoBehaviour {
 				_onetouch = true;
 			} 
 		}
-		if (Input.GetMouseButtonDown(0) && _clear) {
+		if(_clear) {
+			_clear = false;
+			FindObjectOfType<AudioSource>().PlayOneShot(_clearSound);
 
-			SceneManager.LoadScene("Stage2");
+        }
+		if (Input.GetKeyDown(KeyCode.Return) && _clear) {
+			Debug.Log(SceneNum);
+			MoveToNextScene();
+		}
+		if(Input.GetKeyDown(KeyCode.Return) && _failed ){
+			SceneManager.LoadScene(SceneNum);
+		}
+	}
+
+	public static void MoveToNextScene(){
+		try{
+			SceneNum++;
+			SceneManager.LoadScene(SceneNum);
+		}catch{
+			SceneNum = 0;
+			SceneManager.LoadScene (SceneNum);
+		}
+	}
+
+	public static void MoveToNextScene(int _sceneNum){
+		try{
+			SceneManager.LoadScene(_sceneNum);
+		}catch{
+			Debug.Log("Error!");
 		}
 	}
 
 	public void TkgSuccess() {
 		_clear = true;
-		_text.text = "Hit";
+		_text.text = "Hit\n\nPress Enter";
 
 	}
 
 	public void TkgFailed() {
 		_text.text = "Failed";
-
+		_failed = true;
 
 	}
 

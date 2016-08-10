@@ -4,9 +4,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class EggController : MonoBehaviour {
 	public GameManager mng;
-	public Material _tkg;
+	public GameObject _egg;
 	void Awake () {
 		gameObject.GetComponent<Rigidbody>().useGravity = false;
+		_egg.SetActive(false);
 	}
 	public void SetPosition(Vector3 newPosition) {
 		gameObject.transform.position = newPosition;
@@ -20,7 +21,7 @@ public class EggController : MonoBehaviour {
 		if(col.gameObject.tag == "Dish"){
 			mng.TkgSuccess();
 			Destroy(this.gameObject);
-			col.gameObject.GetComponent<Renderer> ().material = _tkg;
+			_egg.SetActive(true);
 	    }
 		if(col.gameObject.tag == "Floar"){
 			mng.TkgFailed ();
@@ -30,6 +31,10 @@ public class EggController : MonoBehaviour {
 			mng.TkgFailed();
 			Destroy(this.gameObject);
 
+		}
+		if(col.gameObject.tag == "Bar"){
+			mng.TkgFailed();
+			Destroy(this.gameObject);
 		}
   }
 }

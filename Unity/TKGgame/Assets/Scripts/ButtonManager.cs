@@ -4,8 +4,20 @@ using UnityEngine.SceneManagement;
 public class ButtonManager : MonoBehaviour {
 
 	public void PressButton() {
-
-		SceneManager.LoadScene("Stage1");
+		GameManager.MoveToNextScene ();
 		Debug.Log("Press!!");
 	}
+
+	public void ResetButton() {
+		Debug.Log ("Push");
+		GameManager.MoveToNextScene(GameManager.SceneNum);
+
+	}
+
+	public void BackButton() {
+		GameManager.SceneNum = 0;
+		SceneManager.LoadScene(GameManager.SceneNum);
+
+	}
+
 }

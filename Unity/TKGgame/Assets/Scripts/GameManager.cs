@@ -11,13 +11,17 @@ public class GameManager : MonoBehaviour {
 	public static int SceneNum;
 	public EggController egg;
 	public GameObject button;
+    public GameObject _namaEgg;
+    void Awake() {
+        _namaEgg.SetActive(false);
+    }
 
-	void Update () {
+    void Update () {
 		if (!_onetouch) {
 			if (Input.GetMouseButton (0)) {
 				var screenPoint = Input.mousePosition;
 				    screenPoint.z = 18;
-				    screenPoint.y = 320;
+				    screenPoint.y = 500;
 				var screenToWorld = Camera.main.ScreenToWorldPoint (screenPoint);
 				egg.SetPosition(screenToWorld);
 
@@ -26,11 +30,7 @@ public class GameManager : MonoBehaviour {
 				_onetouch = true;
 			} 
 		}
-		if(_clear) {
-			_clear = false;
-			FindObjectOfType<AudioSource>().PlayOneShot(_clearSound);
 
-        }
 		if (Input.GetKeyDown(KeyCode.Return) && _clear) {
 			Debug.Log(SceneNum);
 			MoveToNextScene();
@@ -60,11 +60,12 @@ public class GameManager : MonoBehaviour {
 
 	public void TkgSuccess() {
 		_clear = true;
+        _namaEgg.SetActive(true);
 		_text.text = "Hit\n\nPress Enter";
+        FindObjectOfType<AudioSource>().PlayOneShot(_clearSound);
+    }
 
-	}
-
-	public void TkgFailed() {
+    public void TkgFailed() {
 		_text.text = "Failed";
 		_failed = true;
 

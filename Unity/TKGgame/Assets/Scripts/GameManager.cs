@@ -19,11 +19,10 @@ public class GameManager : MonoBehaviour {
     void Update () {
 		if (!_onetouch) {
 			if (Input.GetMouseButton (0)) {
-				var screenPoint = Input.mousePosition;
-				    screenPoint.z = 18;
-				    screenPoint.y = 500;
+				
+				Vector3 screenPoint = new Vector3( Input.mousePosition.x, 500, 18);
 				var screenToWorld = Camera.main.ScreenToWorldPoint (screenPoint);
-				egg.SetPosition(screenToWorld);
+				egg.transform.position = new Vector3 (screenToWorld.x, egg.transform.position.y, egg.transform.position.z);
 
 			} else if (Input.GetMouseButtonUp (0)) {
 				egg.Drop();

@@ -1,27 +1,23 @@
 fileFormatVersion: 2
-guid: c72c0b89926904102a95ccb9b11e3d2d
-timeCreated: 1470098187
+guid: a4eac792862d06f46899ae6917b2feaf
+timeCreated: 1472663019
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: chawan
-    100002: Egg
-    100004: Okome
-    100006: //RootNode
-    400000: chawan
-    400002: Egg
-    400004: Okome
-    400006: //RootNode
-    2300000: chawan
-    2300002: Egg
-    2300004: Okome
-    3300000: chawan
-    3300002: Egg
-    3300004: Okome
-    4300000: chawan
-    4300002: Okome
-    4300004: Egg
+    100000: //RootNode
+    100002: Fan
+    100004: propeller
+    400000: //RootNode
+    400002: Fan
+    400004: propeller
+    2300000: Fan
+    2300002: propeller
+    3300000: Fan
+    3300002: propeller
+    4300000: Fan
+    4300002: propeller
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -80,7 +76,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

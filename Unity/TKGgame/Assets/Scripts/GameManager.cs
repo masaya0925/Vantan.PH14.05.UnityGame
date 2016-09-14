@@ -12,9 +12,22 @@ public class GameManager : MonoBehaviour {
 	public EggController egg;
 	public GameObject button;
     public GameObject _namaEgg;
+	private static bool _isPlaying = false;
+	private static float _TimeScore = 0;
+
+	public static float TimeScore{
+		get{
+			return _TimeScore;
+		}
+	}
+
     void Awake() {
         _namaEgg.SetActive(false);
     }
+
+	void Start(){
+		StartCoroutine (CountTime ());
+	}
 
     void Update () {
 		if (!_onetouch) {
@@ -42,11 +55,13 @@ public class GameManager : MonoBehaviour {
 	public static void MoveToNextScene(){
 		try{
 			SceneNum++;
+
 			SceneManager.LoadScene(SceneNum);
 		}catch{
 			SceneNum = 0;
 			SceneManager.LoadScene (SceneNum);
 		}
+		Timer ();
 	}
 
 	public static void MoveToNextScene(int _sceneNum){
@@ -54,6 +69,17 @@ public class GameManager : MonoBehaviour {
 			SceneManager.LoadScene(_sceneNum);
 		}catch{
 			Debug.Log("Error!");
+		}
+		Timer ();
+	}
+
+
+	private static void Timer(){
+		if (SceneNum == 1 || SceneNum == 10) {
+			_isPlaying = !_isPlaying;
+		}
+		if(SceneNum == 2){
+			Debug.Log( "Time = " + (int)TimeScore + "秒");
 		}
 	}
 
@@ -68,6 +94,13 @@ public class GameManager : MonoBehaviour {
 		_text.text = "Failed";
 		_failed = true;
 
+	}
+
+	private IEnumerator CountTime(){
+		while(_isPlaying) {
+			_TimeScore += Time.deltaTime;
+			yield return null;
+		}
 	}
 
 		

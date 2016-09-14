@@ -21,10 +21,10 @@ public class EggController : MonoBehaviour {
 			mng.TkgSuccess();
 			Destroy(this.gameObject);
 	    }
-//		if(col.gameObject.tag == "Floar"){
-//			mng.TkgFailed ();
-//			Destroy(this.gameObject);
-//		}
+		if(col.gameObject.tag == "Floar"){
+			mng.TkgFailed ();
+			Destroy(this.gameObject);
+		}
 		if(col.gameObject.tag == "Table") {
 			mng.TkgFailed();
 			Destroy(this.gameObject);

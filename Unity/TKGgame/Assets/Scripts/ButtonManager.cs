@@ -20,4 +20,9 @@ public class ButtonManager : MonoBehaviour {
 
 	}
 
+	public void NextScene(){
+		GameManager.SceneNum++;
+		GameManager.MoveToNextScene(GameManager.SceneNum);
+	}
+
 }

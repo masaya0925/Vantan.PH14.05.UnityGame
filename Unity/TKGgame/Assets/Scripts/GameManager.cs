@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
 	public EggController egg;
 	public GameObject button;
     public GameObject _namaEgg;
+	public GameObject _resetbutton;
+	public GameObject _nextbutton;
 	private static bool _isPlaying = false;
 	private static float _TimeScore = 0;
 
@@ -23,6 +25,9 @@ public class GameManager : MonoBehaviour {
 
     void Awake() {
         _namaEgg.SetActive(false);
+		_resetbutton.SetActive(false);
+		_nextbutton.SetActive(false);
+
     }
 
 	void Start(){
@@ -47,9 +52,9 @@ public class GameManager : MonoBehaviour {
 			Debug.Log(SceneNum);
 			MoveToNextScene();
 		}
-		if(Input.GetKeyDown(KeyCode.Return) && _failed ){
-			SceneManager.LoadScene(SceneNum);
-		}
+//		if(Input.GetKeyDown(KeyCode.Return) && _failed ){
+//			SceneManager.LoadScene(SceneNum);
+//		}
 	}
 
 	public static void MoveToNextScene(){
@@ -86,12 +91,15 @@ public class GameManager : MonoBehaviour {
 	public void TkgSuccess() {
 		_clear = true;
         _namaEgg.SetActive(true);
-		_text.text = "Hit\n\nPress Enter";
+		_resetbutton.SetActive(true);
+		_nextbutton.SetActive(true);
+		_text.text = "Success!!";
         FindObjectOfType<AudioSource>().PlayOneShot(_clearSound);
     }
 
     public void TkgFailed() {
-		_text.text = "Failed";
+		_text.text = "Failed...";
+		_resetbutton.SetActive(true);
 		_failed = true;
 
 	}

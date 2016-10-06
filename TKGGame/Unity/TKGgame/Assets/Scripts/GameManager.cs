@@ -83,8 +83,8 @@ public class GameManager : MonoBehaviour {
 		if (SceneNum == 1 || SceneNum == 10) {
 			_isPlaying = !_isPlaying;
 		}
-		if(SceneNum == 2){
-			Debug.Log( "Time = " + (int)TimeScore + "秒");
+		if(SceneNum == 10){
+		   Debug.Log( "Time = " + (int)TimeScore + "秒");
 		}
 	}
 

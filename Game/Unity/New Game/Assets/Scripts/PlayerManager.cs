@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour {
 
 
-	private int _stackspeed = 0;
+	public float _stackspeed = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		//Debug.Log(gameObject.GetComponent<Rigidbody>().velocity);
 		if(Input.GetKey(KeyCode.W)) {
 			gameObject.GetComponent<Rigidbody>().AddForce(0,0,10,ForceMode.Acceleration);
 
@@ -36,26 +36,27 @@ public class PlayerManager : MonoBehaviour {
 			if(_stackspeed >= 25){
 				_stackspeed = 25;
 			} 
-			Debug.Log("_stackspeed = " + _stackspeed);
+			//Debug.Log("_stackspeed = " + _stackspeed);
 
 		}
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			if (Input.GetKey (KeyCode.W)) {
-				gameObject.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, _stackspeed);
-				_stackspeed = 0; 
+				gameObject.GetComponent<Rigidbody> ().AddForce(0, 0, _stackspeed,ForceMode.VelocityChange);
+
 			}
 			if (Input.GetKey (KeyCode.A)) {
-				gameObject.GetComponent<Rigidbody> ().velocity = new Vector3 (-_stackspeed, 0, 0);
-				_stackspeed = 0;
+				gameObject.GetComponent<Rigidbody> ().AddForce(-_stackspeed, 0, 0,ForceMode.VelocityChange);
+
 			}
 			if (Input.GetKey (KeyCode.S)) {
-				gameObject.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, -_stackspeed);
-				_stackspeed = 0;
+				gameObject.GetComponent<Rigidbody> ().AddForce(0, 0, -_stackspeed,ForceMode.VelocityChange);
+
 			}
 			if (Input.GetKey (KeyCode.D)) {
-				gameObject.GetComponent<Rigidbody> ().velocity = new Vector3 (_stackspeed, 0, 0);
-				_stackspeed = 0;
+				gameObject.GetComponent<Rigidbody> ().AddForce(_stackspeed, 0, 0,ForceMode.VelocityChange);
+			
 			}
+			_stackspeed = 0;
 		}
 	}
 }

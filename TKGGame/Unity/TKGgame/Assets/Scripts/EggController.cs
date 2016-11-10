@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class EggController : MonoBehaviour {
 	public GameManager mng;
+	private bool _oneTouch = false;
 	void Awake () {
 		gameObject.GetComponent<Rigidbody>().useGravity = false;
 	}
@@ -16,6 +17,21 @@ public class EggController : MonoBehaviour {
 		gameObject.GetComponent<Rigidbody> ().useGravity = true;
     }
 
+	void Update() {
+		if(!_oneTouch){
+			if (Input.GetMouseButton (0)) {
+
+				Vector3 screenPoint = new Vector3( Input.mousePosition.x, 500, 18);
+				var screenToWorld = Camera.main.ScreenToWorldPoint (screenPoint);
+				transform.position = new Vector3 (screenToWorld.x, transform.position.y, transform.position.z);
+
+			} else if (Input.GetMouseButtonUp (0)) {
+				 Drop();
+				_oneTouch = true;
+			} 
+		}
+	}
+		
 	void OnCollisionEnter(Collision col) {
 		if(col.gameObject.tag == "Dish"){
 			mng.TkgSuccess();

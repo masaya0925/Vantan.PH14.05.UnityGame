@@ -10,7 +10,8 @@ public class Bom : MonoBehaviour {
 	public LayerMask _explosionLayer;
 
 	void OnCollisionEnter(Collision col) {
-
+	
+		//Explosion();
 
 	}
 

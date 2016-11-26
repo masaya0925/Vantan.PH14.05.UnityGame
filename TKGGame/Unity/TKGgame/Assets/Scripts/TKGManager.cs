@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TKGManager : MonoBehaviour {
 
@@ -8,9 +9,9 @@ public class TKGManager : MonoBehaviour {
 	public GameObject _resetbutton;
 	public GameObject _nextbutton;
 	public SoundManager _soundManager;
+	public Text _text;
 
 	void Awake() {
-
 
 	}
 

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class EggController : MonoBehaviour {
-	public GameManager mng;
+	public TKGManager _tkg;
 	private bool _oneTouch = false;
 	void Awake () {
 		gameObject.GetComponent<Rigidbody>().useGravity = false;
@@ -34,20 +34,20 @@ public class EggController : MonoBehaviour {
 		
 	void OnCollisionEnter(Collision col) {
 		if(col.gameObject.tag == "Dish"){
-			mng.TkgSuccess();
+			_tkg.TkgSuccess();
 			Destroy(this.gameObject);
 	    }
 		if(col.gameObject.tag == "Floar"){
-			mng.TkgFailed ();
+			_tkg.TkgFailed ();
 			Destroy(this.gameObject);
 		}
 		if(col.gameObject.tag == "Table") {
-			mng.TkgFailed();
+			_tkg.TkgFailed();
 			Destroy(this.gameObject);
 
 		}
 		if(col.gameObject.tag == "Bar"){
-			mng.TkgFailed();
+			_tkg.TkgFailed();
 			Destroy(this.gameObject);
 		}
    }

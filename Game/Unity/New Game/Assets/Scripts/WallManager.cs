@@ -8,11 +8,11 @@ public class WallManager : MonoBehaviour {
 	private GameObject _wall;
 
 	private float _timer;
-	private float _x = 16f;
+	private float _x = 19f;
 
     void Start () {
     
-		StartCoroutine(WallShrinking(0f));
+		StartCoroutine(WallShrinking(10f));
     }
 
 

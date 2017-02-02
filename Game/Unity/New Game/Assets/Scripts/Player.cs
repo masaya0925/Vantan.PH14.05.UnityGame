@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : StageObject {
@@ -13,10 +14,13 @@ public class Player : StageObject {
 	[SerializeField]
 	private string _stack = "Stack";
 	[SerializeField]
-	private AudioClip _syoutotu;
+	private AudioClip _syoutotu = null;
+	[SerializeField]
+	private Player _target = null;
+
 	public float _stackspeed = 0;
 	private Rigidbody _rigidbody;
-
+	//private bool _osita = false;
 	void Start () {
 		_rigidbody = GetComponent<Rigidbody>();
 
@@ -30,29 +34,36 @@ public class Player : StageObject {
 	}
 	
 	void Update () {
-		
-		var force = GetForce ();
-		_rigidbody.AddForce (force, ForceMode.Acceleration);
 
-		if (Input.GetButton(_stack)) {
-			_stackspeed++;
-			if (_stackspeed >= 25) {
-				_stackspeed = 25;
-			}
-		} else {
-			var v = force.normalized * _stackspeed;
-			if (v != Vector3.zero) {
-				_rigidbody.AddForce (v, ForceMode.VelocityChange);
-				_stackspeed = 0;
+		StartCoroutine(DoubleClickPrevention());
 
-			}
-		}
 	}
 
 	void OnCollisionEnter(Collision col) {
+		Debug.Log(col.gameObject.name);
 		if(col.gameObject.tag == "Player") {
 			col.gameObject.GetComponent<AudioSource>().PlayOneShot(_syoutotu);		
 		}
+	}
+
+	private IEnumerator DoubleClickPrevention() {
+		var force = GetForce ();
+		_rigidbody.AddForce (force, ForceMode.Acceleration);
+	
+			if (Input.GetButton (_stack)) {
+				_stackspeed += 10;
+				if (_stackspeed >= 40) {
+					_stackspeed = 40;
+				}
+			} else if (_target != null) {
+				var dis = _target.transform.position - transform.position;
+				var v = dis.normalized * _stackspeed;
+				if (v != Vector3.zero) {
+					_rigidbody.AddForce (v, ForceMode.VelocityChange);
+					_stackspeed = 0;
+				}
+			}
+		yield return null;
 	}
 }
 

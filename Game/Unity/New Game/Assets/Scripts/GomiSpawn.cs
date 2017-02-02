@@ -34,7 +34,6 @@ public class GomiSpawn : MonoBehaviour {
 			} else {
 				Instantiate (_bomb, new Vector3 (x, 5, z), Quaternion.identity);
 			}
-			//Debug.Log(r);
 			yield return new WaitForSeconds(5f);
 	  }
 

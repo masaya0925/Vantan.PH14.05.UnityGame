@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Field : MonoBehaviour {
 
+	public Timer _timer;
 
 
 	void OnTriggerExit(Collider col) {
 		Destroy(col.gameObject);
 
 		if(col.gameObject.name == "Player1"){
-			Debug.Log("P2 Win!");
+			_timer._winner.GetComponent<Text>().text = "Player 2 Win!!";
+
 		} else if (col.gameObject.name == "Player2"){
-			Debug.Log("P1 Win!");
+			_timer._winner.GetComponent<Text>().text = "Player 1 Win!!";
 		}
 	}
 }

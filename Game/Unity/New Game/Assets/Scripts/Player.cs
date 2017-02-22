@@ -20,38 +20,32 @@ public class Player : StageObject {
 
 	public float _stackspeed = 0;
 	private Rigidbody _rigidbody;
-	//private bool _osita = false;
 	void Start () {
 		_rigidbody = GetComponent<Rigidbody>();
+		StartCoroutine(DoubleClickPrevention());
+
 
 	}
 
-	Vector3 GetForce ()
-	{
+	Vector3 GetForce () {
 		var h = Input.GetAxis(_horizontal);
 		var v = Input.GetAxis(_vertical);
 		return new Vector3(h*_speed, 0,v*_speed);
 	}
-	
-	void Update () {
-
-		StartCoroutine(DoubleClickPrevention());
-
-	}
 
 	void OnCollisionEnter(Collision col) {
-		Debug.Log(col.gameObject.name);
 		if(col.gameObject.tag == "Player") {
 			col.gameObject.GetComponent<AudioSource>().PlayOneShot(_syoutotu);		
 		}
 	}
 
 	private IEnumerator DoubleClickPrevention() {
-		var force = GetForce ();
-		_rigidbody.AddForce (force, ForceMode.Acceleration);
+		while (true) {
+			var force = GetForce ();
+			_rigidbody.AddForce (force, ForceMode.Acceleration);
 	
 			if (Input.GetButton (_stack)) {
-				_stackspeed += 10;
+				_stackspeed += 5;
 				if (_stackspeed >= 40) {
 					_stackspeed = 40;
 				}
@@ -62,8 +56,11 @@ public class Player : StageObject {
 					_rigidbody.AddForce (v, ForceMode.VelocityChange);
 					_stackspeed = 0;
 				}
+				yield return new WaitForSeconds (0.5f);
 			}
-		yield return null;
+			yield return null;
+
+		}
 	}
 }
 

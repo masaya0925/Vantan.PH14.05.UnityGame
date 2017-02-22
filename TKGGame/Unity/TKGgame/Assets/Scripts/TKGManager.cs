@@ -24,6 +24,7 @@ public class TKGManager : MonoBehaviour {
 	}
 
 	public void TkgFailed() {
+		
 		_text.text = "Failed...";
 		_resetbutton.SetActive(true);
 		_soundManager.Failed();

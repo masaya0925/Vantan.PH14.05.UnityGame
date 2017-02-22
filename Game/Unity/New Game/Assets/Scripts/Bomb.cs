@@ -7,13 +7,15 @@ public class Bomb : StageObject {
 	[SerializeField]
 	private float _power;
 
+
+
 	private float _radius = 10f;
 
 	[SerializeField]
 	private GameObject _effect;
 
 	void Start(){
-
+		
 	}
 
 	void OnCollisionEnter(Collision col) {
@@ -31,7 +33,6 @@ public class Bomb : StageObject {
 				rigidbody.AddExplosionForce (_power * p, _bPos, _radius, 5f);
 			}
 		}
-		 
 	     var v = Instantiate(_effect, _bPos,Quaternion.identity);
 		 Destroy (v, 1); 
 		 Destroy (gameObject);

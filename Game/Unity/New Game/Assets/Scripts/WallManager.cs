@@ -12,7 +12,7 @@ public class WallManager : MonoBehaviour {
 
     void Start () {
     
-		StartCoroutine(WallShrinking(10f));
+		StartCoroutine(WallShrinking(5f));
     }
 
 

@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class StageRotate : MonoBehaviour {
 
+	[SerializeField]
+	private float _rotatespeed;
 
 	[SerializeField]
 	private int _vector = 100;
 
-	void Start () {
+	void Update() {
+		transform.Rotate (new Vector3 (0, 0, _rotatespeed));
 
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	void OnCollisionStay(Collision col) {
@@ -23,7 +20,6 @@ public class StageRotate : MonoBehaviour {
 			var v = col.transform.position - transform.position;
 			var c = Vector3.Cross(v.normalized,new Vector3(0, 1, 0));
 			col.gameObject.GetComponent<Rigidbody>().AddForce(c*_vector,ForceMode.Acceleration);
-			Debug.Log (c);
 		}
 	}
 

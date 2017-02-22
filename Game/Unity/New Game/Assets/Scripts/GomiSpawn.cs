@@ -11,8 +11,7 @@ public class GomiSpawn : MonoBehaviour {
 	private float timer; 
 
 	void Start () {
-		StartCoroutine(Spawn(10f));
-	    
+		StartCoroutine(Spawn(5f));
 	    
 	}
 		
@@ -20,7 +19,6 @@ public class GomiSpawn : MonoBehaviour {
 		timer += Time.deltaTime;
 
 
-		//Debug.Log(timer);
 	}
 
 	private IEnumerator Spawn(float waitTime) {
